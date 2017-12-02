@@ -10,8 +10,7 @@ import time
 import sys
 
 ##############VARIABLES TO SET
-coinigykey = '---Your-coinigy-key-here---' #we need these to set the alerts
-coinigysec = '---Your-coinigy-secret-here---'
+from api_keys import coinigykey, coinigysec     # coinigy api key and secret need to be set in api.keys.py
 days = 14 #how far back to look for bases. Suggested at least 14 for base breaks and 1 for day trading
 skip = 6 #this is how many candles back from now we ignore when scanning for bases; has to be at least 6
 market = "BTC"
@@ -26,7 +25,7 @@ minimum_volume = 10 #Filters out all coins whose volume (in BTC in the last 24h)
 ###############VARIABLES TO SET
 
 if coinigykey == "---Your-coinigy-key-here---":
-    input("You need to put your coinigy key and secret in the file")
+    input("You need to put your coinigy key and secret in api_keys.py")
     sys.exit()
 
 summaries = urlopen("https://bittrex.com/api/v1.1/public/getmarketsummaries").read().decode("utf-8")
