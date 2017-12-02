@@ -101,7 +101,7 @@ for coin in summaries['result']:
                     print("Base price " + str(round(decimal.Decimal(y), 8)))
                     print("Alert price " + str(round(decimal.Decimal(y * drop), 8)))
                     #print(min(l))
-                    values = '{"exch_code": "BTRX", "market_name": "' + coin + '/' + market + '", "alert_price": ' + str(y * drop) + ', "alert_note": ""}'
+                    values = '{"exch_code": "BTRX", "market_name": "' + coin + '/' + market + '", "alert_price": ' + str(y * drop) + ', "alert_note": "z_base_scanner"}'
                     values = bytes(values, encoding='utf-8')
                     headers = {'Content-Type': 'application/json','X-API-KEY': coinigykey, 'X-API-SECRET': coinigysec}
                     request = Request('https://api.coinigy.com/api/v1/addAlert', data=values, headers=headers)
