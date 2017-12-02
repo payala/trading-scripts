@@ -22,6 +22,7 @@ six_candle_up = 1.05 #how much higher the sixth candles from the base should be 
 sensitivity = 2 #A number 0-6 for how sensitive the scanner is to quality bases. Lower number allows higher quality bases but less of them. 1 or 2 seems to work best
 low_or_close = 3 #whether you want bases based on the low or the close (bottom of wick or candle respectively). 3 gives you low and 4 is close. (Also 0 is open and 1 is high if you want to go there)
 split_the_difference = False #Detects bases at 50% of wicks rather than the low or close prices. Setting this to True will cause the low_or_close variable to be ignored
+minimum_volume = 10 #Filters out all coins whose volume (in BTC in the last 24h) is less than this amount
 ###############VARIABLES TO SET
 
 if coinigykey == "---Your-coinigy-key-here---":
@@ -50,8 +51,10 @@ def check_dup_alerts(coin, price):
 
 
 for coin in summaries['result']:
+    vol_base = coin['BaseVolume']
     coin = coin['MarketName']
-    if not market in coin or 'USDT' in coin: continue
+    if not market in coin or 'USDT' in coin or vol_base < minimum_volume :
+        continue
     coin = coin.split('-')[1]
     #coin = "ABY"
     print(coin)
